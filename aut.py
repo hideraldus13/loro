@@ -54,6 +54,22 @@ class automatizador():
     def __init__(self) -> None:
         pass
 
+    def __exec_click__(com):
+        com = com.replace('{','').replace('}','').replace(' ','')
+        lista = com.split(',')
+
+        print('{}: {}'.format(com, 'Lista de posições'))
+        try:
+            if len(lista) == 2:
+                x= int(lista[0])
+                y= int(lista[1])
+                pyautogui.click(x=x, y=y)
+        except:
+            print('Lista de posições invalido!')
+            msg = 'A lista de posições {} é inválida'.format(com)
+            return False, msg
+        return True, ''
+
     def __exec_timer__(com):
         print('{}: {}'.format(com, 'Timer'))
         try:
@@ -154,6 +170,8 @@ class automatizador():
             ret, msg = self.__exec_timer__(com)    
         elif com[0] == '[':
             ret, msg = self.__exec_vetor__(com)
+        elif com[0] == '{':
+            ret, msg = self.__exec_click__(com)
         elif com[0] == '|':
             ret, msg = self.__exec_funcao__(com)
         elif self.__existeTecla__(com):

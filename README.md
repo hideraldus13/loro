@@ -34,7 +34,7 @@ Se você acredita que novos comandos e/ou melhorias podem ser adicionadas ao <b>
 
 ## :punch: Colabore
 
-> Dê uma olhada no [colaborando.md](./colaborando.md) para saber como atualizar qualquer um dos roadmaps
+> Dê uma olhada no [colaborando.md](./docs/colaborando.md) para saber como atualizar qualquer um dos roadmaps
 
 - Abra <i>Pull Requests</i> com atualizações
 - Discuta ideias em <i>Issues</i>
@@ -43,7 +43,7 @@ Se você acredita que novos comandos e/ou melhorias podem ser adicionadas ao <b>
 
 ## :file_folder: Histórico de versões
 
-Acesse o CHANGELOG.md [aqui](CHANGELOG.md).
+Acesse o CHANGELOG.md [aqui](./CHANGELOG.md).
 
 ## :pushpin: Licença
 

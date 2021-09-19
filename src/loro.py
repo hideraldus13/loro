@@ -218,7 +218,7 @@ class Instrucao:
 
 class Config():
     def __init__(self):
-        self.titulo = 'LORO v0.2'
+        self.titulo = 'LORO - O automatizador super simples para tarefas repetitivas!'
         self.dir_comandos = ''
         self.timer_padrao = 1
         self.dir_output = ''

@@ -15,18 +15,18 @@ Dê o :arrow_forward: play e deixe o Loro trabalhar por você!
 </sub>
 
 ## :warning: Nossa proposta
-> A proposta deste automatizador é realizar as suas tarefas repetitivas com o mínimo de conhecimentos e/ou experiência com RPAs e, principalmente, com o <b>máximo de simplicidade na configuração.</b> 
+> A proposta do <b>Loro</b> é automatizar as suas tarefas repetitivas utilizando o mínimo de conhecimentos e/ou experiência com RPAs e, principalmente, com o <b>máximo de simplicidade na configuração.</b> 
 
 ## :beginner: Minha primeira vez, por onde devo começar
 > Quando eu digo que o <b>Loro</b> é simples de usar, não é brincadeira. Vá para a sessão <i>Primeiros passos</i> e já acompanhe o <b>Loro</b> funcionando com poucos passos. Depois, entenda um pouco melhor os comandos disponíveis e fechou! :white_check_mark: E, claro, se tiver dúvidas estou sempre por aqui. :punch: 
 
 ## :small_blue_diamond: Primeiros passos
 
-Em construção
+<i>Em construção</i>
 
 ## :small_blue_diamond: Comandos disponíveis
 
-Em construção
+<i>Em construção</i>
 
 ## :vertical_traffic_light: Fique ligado
 

@@ -41,17 +41,18 @@ class Instrucao:
     3 = timer
     4 = lista
     5 = click
-    6 = funcao //desabilitado
+    6 = funcao 
     7 = digitacao
     '''
 
     DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Timer', 'Lista', 'Click', 'Funcao', 'Digitacao']
 
-    def __init__(self, lista_comandos):
+    def __init__(self, lista_comandos, config):
         com, tipo, aux = self.__validacoes__(lista_comandos)
         self.comando = com
         self.tipo_comando = tipo
         self.aux = aux
+        self.config = config
 
     def __validacoes__(self, com):
         if len(com) == 1:
@@ -78,7 +79,14 @@ class Instrucao:
             return lista, 5, aux
 
         elif com[0:2] == '_|':
-            pass
+            if com[2:5] == 'tab':
+                aux = int(com[-1])
+                com = com[:-2]
+                return com[2:], 6, aux
+            if com[2:] == 'print':
+                return com[2:], 6, None
+            
+            return com, 0, None
 
         elif self.__existeTecla__(com):
             return com, 1, None
@@ -119,7 +127,7 @@ class Instrucao:
         elif self.tipo_comando == 5:
             self.__exec_click__()
         elif self.tipo_comando == 6:
-            pass
+            self.__exec_funcao__()
         elif self.tipo_comando == 7:
             self.__exec_digitacao__()
 
@@ -173,6 +181,22 @@ class Instrucao:
         except:
             raise Exception('A lista de posições {} é inválida')
     
+    def __exec_funcao__(self):
+        try:
+            if self.comando == 'tab':
+                for i in range(self.aux):
+                    pyautogui.press('tab')
+                    time.sleep(self.config.get_timer_padrao())
+            if self.comando == 'print':
+                file_name = str(datetime.now()).replace(':','').replace('.','').replace(' ','').replace('-','')+'_print.png'
+
+                pyautogui.screenshot(self.config.get_dir_output()+file_name)
+            else:
+                raise Exception('Funcao invalida!')
+        except:
+            raise Exception('Erro na execucao da funcao!')
+           
+
     def __exec_digitacao__(self):
         try:
             pyautogui.typewrite(self.comando, 0.0001)
@@ -223,17 +247,17 @@ def __lista_arquivos__(dir):
 
     return dict_arquivos
 
-def __executa_instrucoes__(lista, timer, titulo):
+def __executa_instrucoes__(lista, config):
     instrucoes = []
     for inst in lista:
-        x = Instrucao(inst)
+        x = Instrucao(inst, config)
         if x.get_tipo() == 2:
-            x.set_aux(gui.inputDescricao(titulo, 'Defina o valor da variável "{}":'.format(x.get_instrucao())))
+            x.set_aux(gui.inputDescricao(config.get_titulo(), 'Defina o valor da variável "{}":'.format(x.get_instrucao())))
         instrucoes.append(x)
     
     for i in instrucoes:
         i.executar()
-        time.sleep(timer)
+        time.sleep(config.get_timer_padrao())
 
 def main():
     config = Config()
@@ -278,7 +302,7 @@ def main():
 
     input = gui.inputConfirmacao(titulo, 'Deseja iniciar a automatização?\n(Você não poderá utilizar o mouse e o teclado durante a execução)')
     if input:
-        __executa_instrucoes__(comandos.tolist(), timer, titulo)
+        __executa_instrucoes__(comandos.tolist(), config)
         gui.alerta(titulo, 'Automatização finalizado!')
     
     return True

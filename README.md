@@ -2,7 +2,7 @@
 
 ![LORO](/media/logo512px.png)
 
-## :seat: O automatizador super simples para tarefas repetitivas!
+## :parrot: O automatizador super simples para tarefas repetitivas!
 
 Dê o :arrow_forward: play e deixe o Loro trabalhar por você!
 

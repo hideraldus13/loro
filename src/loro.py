@@ -28,6 +28,7 @@ from datetime import datetime
 import configparser
 
 import gui as gui
+import ascii_art as art
 
 class Instrucao:
     '''
@@ -44,7 +45,7 @@ class Instrucao:
     7 = digitacao
     '''
 
-    DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Timer', 'Lista', 'Click', 'Funcao', 'Tecla', 'Digitacao']
+    DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Timer', 'Lista', 'Click', 'Funcao', 'Digitacao']
 
     def __init__(self, lista_comandos):
         com, tipo = self.__validacoes__(lista_comandos)
@@ -56,23 +57,23 @@ class Instrucao:
         if len(com) == 1:
             return com, 1
 
-        elif com[0] == '#':
-            return com[1:], 2
+        elif com[0:2] == '_#':
+            return com[2:], 2
 
-        elif com[0] == '>':
-            return float(com[1:]), 3   
+        elif com[0:2] == '_>':
+            return float(com[2:]), 3   
 
-        elif com[0] == '[':
-            com = com.replace('[','').replace(']','').replace(' ','')
+        elif com[0:2] == '_[':
+            com = com.replace('_[','').replace(']','').replace(' ','')
             lista = com.split(',')
             return lista, 4
 
-        elif com[0] == '{':
-            com = com.replace('{','').replace('}','').replace(' ','')
+        elif com[0:2] == '_{':
+            com = com.replace('_{','').replace('}','').replace(' ','')
             lista = com.split(',')
             return lista, 5
 
-        elif com[0] == '|':
+        elif com[0:2] == '_|':
             pass
 
         elif self.__existeTecla__(com):
@@ -96,7 +97,7 @@ class Instrucao:
         return tecla in pyautogui.KEYBOARD_KEYS
 
     def __str__(self):
-        txt = 'Instrucao: '+self.DESCRICAO_TIPO[self.tipo_comando]+' - '+str(self.comando)
+        txt = 'Instrucao: '+self.DESCRICAO_TIPO[self.tipo_comando]+' ('+str(self.tipo_comando)+') - '+str(self.comando)
         if self.aux != None:
             txt += ' - ' + self.aux
         return txt
@@ -169,7 +170,7 @@ class Instrucao:
 
 class Config():
     def __init__(self):
-        self.titulo = 'LORO v0.1'
+        self.titulo = 'LORO v0.2'
         self.dir_comandos = ''
         self.timer_padrao = 1
         self.dir_output = ''
@@ -222,7 +223,6 @@ def __executa_instrucoes__(lista, timer, titulo):
         i.executar()
         time.sleep(timer)
 
-
 def main():
     config = Config()
     config.ler_config()
@@ -272,6 +272,10 @@ def main():
     return True
 
 if __name__ == "__main__":
-    print('## INICIADA A EXECUÇÃO ##')
+    print(art.parrot())
+    print('LORO - O automatizador super simples para tarefas repetitivas!')
+    print('+ informações em https://github.com/hideraldus13/loro')
+    print('')
+    print('> Execução iniciada')
     main()
-    print('## FINALIZADA A EXECUÇÃO ##')
+    print('> Execução finalizada')

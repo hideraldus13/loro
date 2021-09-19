@@ -1,6 +1,7 @@
-[win, r]
+_[win, r]
 chrome
 enter
->1
-#site
+_>1
+_[win, up]
+_#site
 enter

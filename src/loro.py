@@ -47,20 +47,13 @@ class Instrucao:
 
     DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Timer', 'Lista', 'Click', 'Funcao', 'Digitacao']
 
-    def __init__(self, lista_comandos, config):
-        self.__carrega_propriedades__(lista_comandos)
-        self.config = config
-    
-    def __init__(self, lista_comandos):
-        self.__carrega_propriedades__(lista_comandos)
-        self.config = None
-
-    def __carrega_propriedades__(self, lista_comandos):
+    def __init__(self, lista_comandos, config = None):
         com, tipo, aux = self.__validacoes__(lista_comandos)
         self.comando = com
         self.tipo_comando = tipo
         self.aux = aux
-
+        self.config = config
+    
     def __validacoes__(self, com):
         #tecla
         if len(com) == 1:

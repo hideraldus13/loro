@@ -28,7 +28,7 @@ Quando eu digo que o <b>Loro</b> é simples de usar, não é brincadeira. Vá pa
 - Dê dois cliques no arquivo <i>'start_loro.bat'</i>
 - :white_check_mark: O <b>Loro</b> já estará rodando!
 
-> O próximo passo é dar uma olhada na [documentação completa](./docs/documentcao.md)
+> O próximo passo é dar uma olhada na [documentação completa](./docs/documentacao.md)!
 
 ## :top: Comandos disponíveis
 

@@ -40,12 +40,12 @@ class Instrucao:
     2 = variável
     3 = timer
     4 = lista
-    5 = click
+    5 = clique
     6 = funcao 
     7 = digitacao
     '''
 
-    DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Timer', 'Lista', 'Click', 'Funcao', 'Digitacao']
+    DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Pausa', 'Conj. Teclas', 'Clique', 'Funcao', 'Digitacao']
 
     def __init__(self, lista_comandos, config = None):
         com, tipo, aux = self.__validacoes__(lista_comandos)
@@ -80,7 +80,7 @@ class Instrucao:
 
             return com, 7, None
 
-        #click
+        #clique
         elif re.fullmatch(r'_{\d+,\d+}', com) != None or  re.fullmatch(r'_{\d+,\d+}:\w\d', com) != None:
             aux = None
             if re.fullmatch(r'_{\d+,\d+}:\w\d', com) != None:
@@ -139,7 +139,7 @@ class Instrucao:
         elif self.tipo_comando == 4:
             self.__exec_lista__()
         elif self.tipo_comando == 5:
-            self.__exec_click__()
+            self.__exec_clique__()
         elif self.tipo_comando == 6:
             self.__exec_funcao__()
         elif self.tipo_comando == 7:
@@ -175,7 +175,7 @@ class Instrucao:
         except:
             raise Exception('Lista de comandos invalido!')
 
-    def __exec_click__(self):
+    def __exec_clique__(self):
         lista = self.comando
         aux = self.aux
         try:

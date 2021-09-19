@@ -23,7 +23,7 @@ except ModuleNotFoundError:
     install("xlrd")
     import pandas as pd
 
-import os, csv 
+import os, re
 from datetime import datetime
 import configparser
 
@@ -48,53 +48,74 @@ class Instrucao:
     DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Timer', 'Lista', 'Click', 'Funcao', 'Digitacao']
 
     def __init__(self, lista_comandos, config):
+        self.__carrega_propriedades__(lista_comandos)
+        self.config = config
+    
+    def __init__(self, lista_comandos):
+        self.__carrega_propriedades__(lista_comandos)
+        self.config = None
+
+    def __carrega_propriedades__(self, lista_comandos):
         com, tipo, aux = self.__validacoes__(lista_comandos)
         self.comando = com
         self.tipo_comando = tipo
         self.aux = aux
-        self.config = config
 
     def __validacoes__(self, com):
+        #tecla
         if len(com) == 1:
             return com, 1, None
 
-        elif com[0:2] == '_#':
+        #variavel
+        elif re.fullmatch(r'_#\w+', com) != None:
             return com[2:], 2, None
 
-        elif com[0:2] == '_>':
+        #timer
+        elif re.fullmatch(r'_>\d+(.\d+)?', com) != None:
             return float(com[2:]), 3, None
 
-        elif com[0:2] == '_[':
-            com = com.replace('_[','').replace(']','').replace(' ','')
-            lista = com.split(',')
-            return lista, 4, None
+        #lista
+        elif re.match(r'_\[.+', com) != None:
+            aux = com.replace(' ','')
+            if re.fullmatch(r'_\[\w+,\w+(,\w+)?\]', aux) != None:
+                aux = aux.replace('_[','').replace(']','')
+                lista = aux.split(',')
+                for i in lista:
+                    if self.__existeTecla__(i) == False:
+                        return com, 7, None
+                return lista, 4, None
 
-        elif com[0:2] == '_{':
+            return com, 7, None
+
+        #click
+        elif re.fullmatch(r'_{\d+,\d+}', com) != None or  re.fullmatch(r'_{\d+,\d+}:\w\d', com) != None:
             aux = None
-            if com[-3] == ':':
+            if re.fullmatch(r'_{\d+,\d+}:\w\d', com) != None:
                 aux = [com[-2], int(com[-1])]
                 com = com[:-3]
             com = com.replace('_{','').replace('}','').replace(' ','')
             lista = com.split(',')
             return lista, 5, aux
 
-        elif com[0:2] == '_|':
-            if com[2:5] == 'tab':
-                aux = int(com[-1])
-                com = com[:-2]
+        #funcao
+        elif re.fullmatch(r'_\|\w+(:\d+)?', com) != None:
+            if re.fullmatch(r'_\|(tab):\d+', com) != None:
+                pos = com.rfind(':')
+                aux = int(com[pos+1:])
+                com = com[:pos]
                 return com[2:], 6, aux
-            if com[2:] == 'print':
+            if re.fullmatch(r'_\|print', com) != None:
                 return com[2:], 6, None
             
-            return com, 0, None
+            return com, 7, None
 
+        #tecla
         elif self.__existeTecla__(com):
             return com, 1, None
 
+        #digitacao
         else:
             return com, 7, None
-
-        return com, 0, None
 
     def get_tipo(self):
         return self.tipo_comando
@@ -156,10 +177,8 @@ class Instrucao:
                 pyautogui.press(lista[0])
             elif len(lista) == 2:
                 pyautogui.hotkey(lista[0], lista[1])
-            elif len(lista) == 3:
-                pyautogui.hotkey(lista[0], lista[1], lista[2])
             else:
-                pyautogui.hotkey(lista[0], lista[1], lista[2], lista[3])
+                pyautogui.hotkey(lista[0], lista[1], lista[2])
         except:
             raise Exception('Lista de comandos invalido!')
 

@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/hideraldus13/loro">
-    <img src="/media/logo512px.png" alt="LORO" width="96" height="96">
+    <img src="/media/logo512px.png" alt="LORO" height="300">
   </a>
   <h1 align="center">LORO</h1>
 </p>

@@ -12,9 +12,8 @@ Dê o :arrow_forward: play e deixe o Loro trabalhar por você!
 </sub>
 
 ## :hatching_chick: Versões
-### 0.1 - Unstable
+### 0.2 - Unstable
 - Não use! 
 
-### 0.2 - In Dev (prev. out/21)
+### 0.3 - In Dev (prev. out/21)
 - Criação de documentação
-- Melhorias de uso

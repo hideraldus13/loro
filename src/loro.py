@@ -48,41 +48,45 @@ class Instrucao:
     DESCRICAO_TIPO = ['Não identificado', 'Tecla', 'Variável', 'Timer', 'Lista', 'Click', 'Funcao', 'Digitacao']
 
     def __init__(self, lista_comandos):
-        com, tipo = self.__validacoes__(lista_comandos)
+        com, tipo, aux = self.__validacoes__(lista_comandos)
         self.comando = com
         self.tipo_comando = tipo
-        self.aux = None
+        self.aux = aux
 
     def __validacoes__(self, com):
         if len(com) == 1:
-            return com, 1
+            return com, 1, None
 
         elif com[0:2] == '_#':
-            return com[2:], 2
+            return com[2:], 2, None
 
         elif com[0:2] == '_>':
-            return float(com[2:]), 3   
+            return float(com[2:]), 3, None
 
         elif com[0:2] == '_[':
             com = com.replace('_[','').replace(']','').replace(' ','')
             lista = com.split(',')
-            return lista, 4
+            return lista, 4, None
 
         elif com[0:2] == '_{':
+            aux = None
+            if com[-3] == ':':
+                aux = [com[-2], int(com[-1])]
+                com = com[:-3]
             com = com.replace('_{','').replace('}','').replace(' ','')
             lista = com.split(',')
-            return lista, 5
+            return lista, 5, aux
 
         elif com[0:2] == '_|':
             pass
 
         elif self.__existeTecla__(com):
-            return com, 1
+            return com, 1, None
 
         else:
-            return com, 7
+            return com, 7, None
 
-        return com, 0
+        return com, 0, None
 
     def get_tipo(self):
         return self.tipo_comando
@@ -99,7 +103,7 @@ class Instrucao:
     def __str__(self):
         txt = 'Instrucao: '+self.DESCRICAO_TIPO[self.tipo_comando]+' ('+str(self.tipo_comando)+') - '+str(self.comando)
         if self.aux != None:
-            txt += ' - ' + self.aux
+            txt += ' - ' + str(self.aux)
         return txt
 
     def executar(self):
@@ -153,11 +157,19 @@ class Instrucao:
 
     def __exec_click__(self):
         lista = self.comando
+        aux = self.aux
         try:
-            if len(lista) == 2:
-                x= int(lista[0])
-                y= int(lista[1])
+            x= int(lista[0])
+            y= int(lista[1])
+            if aux != None:
+                if aux[0] == 'L':
+                    button='left'
+                else: 
+                    button='right'
+                pyautogui.click(x=x, y=y, button=button, clicks=aux[1], interval=0.25)
+            else:
                 pyautogui.click(x=x, y=y)
+
         except:
             raise Exception('A lista de posições {} é inválida')
     

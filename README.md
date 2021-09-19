@@ -2,7 +2,7 @@
 
 ![LORO](/media/logo512px.png)
 
-## :seat: O seu automatizador de tarefas repetitivas
+## :seat: O automatizador super simples para tarefas repetitivas!
 
 Dê o :arrow_forward: play e deixe o Loro trabalhar por você!
 

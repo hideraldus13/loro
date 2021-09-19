@@ -22,11 +22,23 @@ Dê o :arrow_forward: play e deixe o Loro trabalhar por você!
 
 ## :small_blue_diamond: Primeiros passos
 
-<i>Em construção</i>
+- Tenha o <i>python</i> instalado (3.7+) <i>([download aqui](https://www.python.org/downloads/))</i>
+- Faça o git deste repositório <i>(git clone https://github.com/hideraldus13/loro.git)</i> ou faça o download do projeto em .zip <i>(https://github.com/hideraldus13/loro/archive/refs/heads/main.zip)</i>
+- Renomeie o arquivo <i>'start_loro_bat'</i> para <i>'start_loro.bat'</i>
+- Dois cliques no arquivo <i>'start_loro.bat'</i>
+- :white_check_mark: O <b>Loro</b> já estará rodando!
 
 ## :small_blue_diamond: Comandos disponíveis
 
-<i>Em construção</i>
+- <b>Teclas e digitações</b> (a, F4, seu nome)
+- <b>Conjunto de teclas</b> (CTRL + C, ALT + F4, CTRL + SHIFT + DEL)
+- <b>Cliques de mouse</b> (1 clique, 2 cliques, botão direito)
+
+## :small_blue_diamond: Funções disponíveis
+
+- <b>Variáveis em tempo de execução</b> para reutilizar o seu automatizador sem precisar alterar nada
+- <b>Repetição de TAB</b> para melhor percorrer o cursor em formulários
+- <b>Printscreen</b> salve a tela em execução com apenas um comando
 
 ## :vertical_traffic_light: Fique ligado
 

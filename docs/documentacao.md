@@ -1,12 +1,10 @@
-# LORO - DOCUMENTAÇÃO
-### :parrot: O automatizador super simples para tarefas repetitivas!
-
+# :parrot: Documentação do Loro
 ## Primeiros passos
 
-- Tenha o <i>python</i> instalado (3.7+) ([download aqui](https://www.python.org/downloads/))
-- Faça o git deste repositório (git clone https://github.com/hideraldus13/loro.git) ou faça o download (https://github.com/hideraldus13/loro/archive/refs/heads/main.zip)
-- Renomeie o arquivo 'start_loro_bat' para 'start_loro.bat'
-- Abra o arquivo 'start_loro.bat'
-- :white_check_mark: O Loro já estará rodando
+- Tenha o <i>python</i> instalado (3.7+) <i>([download aqui](https://www.python.org/downloads/))</i>
+- Faça o git deste repositório <i>(git clone https://github.com/hideraldus13/loro.git)</i> ou faça o download do projeto em .zip <i>(https://github.com/hideraldus13/loro/archive/refs/heads/main.zip)</i>
+- Renomeie o arquivo <i>'start_loro_bat'</i> para <i>'start_loro.bat'</i>
+- Dois cliques no arquivo <i>'start_loro.bat'</i>
+- :white_check_mark: O <b>Loro</b> já estará rodando!
 
 ##

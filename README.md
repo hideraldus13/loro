@@ -15,26 +15,28 @@ Dê o :arrow_forward: play e deixe o Loro trabalhar por você!
 </sub>
 
 ## :warning: Nossa proposta
-> A proposta do <b>Loro</b> é automatizar as suas tarefas repetitivas utilizando o mínimo de conhecimentos e/ou experiência com RPAs e, principalmente, com o <b>máximo de simplicidade na configuração.</b> 
+A proposta do <b>Loro</b> é automatizar as suas tarefas repetitivas utilizando o mínimo de conhecimentos e/ou experiência com RPAs e, principalmente, com o <b>máximo de simplicidade na configuração.</b> 
 
 ## :beginner: Minha primeira vez, por onde devo começar
-> Quando eu digo que o <b>Loro</b> é simples de usar, não é brincadeira. Vá para a sessão <i>Primeiros passos</i> e já acompanhe o <b>Loro</b> funcionando com poucos passos. Depois, entenda um pouco melhor os comandos disponíveis e fechou! :white_check_mark: E, claro, se tiver dúvidas estou sempre por aqui. :punch: 
+Quando eu digo que o <b>Loro</b> é simples de usar, não é brincadeira. Vá para a sessão <i>Primeiros passos</i> e já acompanhe o <b>Loro</b> funcionando com poucos passos. Depois, entenda um pouco melhor os comandos disponíveis e fechou! :white_check_mark: E, claro, se tiver dúvidas estou sempre por aqui. :punch: 
 
 ## :small_blue_diamond: Primeiros passos
 
 - Tenha o <i>python</i> instalado (3.7+) <i>([download aqui](https://www.python.org/downloads/))</i>
-- Faça o git deste repositório <i>(git clone https://github.com/hideraldus13/loro.git)</i> ou faça o download do projeto em .zip <i>(https://github.com/hideraldus13/loro/archive/refs/heads/main.zip)</i>
+- Faça o clone deste repositório <i>(git clone https://github.com/hideraldus13/loro.git)</i> ou faça o download do projeto em .zip <i>(https://github.com/hideraldus13/loro/archive/refs/heads/main.zip)</i>
 - Renomeie o arquivo <i>'start_loro_bat'</i> para <i>'start_loro.bat'</i>
-- Dois cliques no arquivo <i>'start_loro.bat'</i>
+- Dê dois cliques no arquivo <i>'start_loro.bat'</i>
 - :white_check_mark: O <b>Loro</b> já estará rodando!
 
-## :small_blue_diamond: Comandos disponíveis
+> O próximo passo é dar uma olhada na [documentação completa](./docs/documentcao.md)
+
+## :top: Comandos disponíveis
 
 - <b>Teclas e digitações</b> (a, F4, seu nome)
 - <b>Conjunto de teclas</b> (CTRL + C, ALT + F4, CTRL + SHIFT + DEL)
 - <b>Cliques de mouse</b> (1 clique, 2 cliques, botão direito)
 
-## :small_blue_diamond: Funções disponíveis
+## :top: Funções disponíveis
 
 - <b>Variáveis em tempo de execução</b> para reutilizar o seu automatizador sem precisar alterar nada
 - <b>Repetição de TAB</b> para melhor percorrer o cursor em formulários
@@ -45,8 +47,6 @@ Dê o :arrow_forward: play e deixe o Loro trabalhar por você!
 Se você acredita que novos comandos e/ou melhorias podem ser adicionadas ao <b>Loro</b>, por favor abra um <i>Pull Request</i> com a atualização e submeta as <i>Issues</i> para discussão. De qualquer forma, continuarei atualizando o repositório sempre que encontrar pontos de melhorias, então clique em watch/star e fique ligado neste repositório. 
 
 ## :punch: Colabore
-
-> Dê uma olhada no [colaborando.md](./docs/colaborando.md) para saber como atualizar qualquer um dos roadmaps
 
 - Abra <i>Pull Requests</i> com atualizações
 - Discuta ideias em <i>Issues</i>

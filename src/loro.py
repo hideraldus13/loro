@@ -97,7 +97,17 @@ class Instrucao:
                 aux = int(com[pos+1:])
                 com = com[:pos]
                 return com[2:], 6, aux
-            if re.fullmatch(r'_\|print', com) != None:
+            elif re.fullmatch(r'_\|(down):\d+', com) != None:
+                pos = com.rfind(':')
+                aux = int(com[pos+1:])
+                com = com[:pos]
+                return com[2:], 6, aux
+            elif re.fullmatch(r'_\|(up):\d+', com) != None:
+                pos = com.rfind(':')
+                aux = int(com[pos+1:])
+                com = com[:pos]
+                return com[2:], 6, aux
+            elif re.fullmatch(r'_\|print', com) != None:
                 return com[2:], 6, None
             
             return com, 7, None
@@ -199,7 +209,15 @@ class Instrucao:
                 for i in range(self.aux):
                     pyautogui.press('tab')
                     time.sleep(self.config.get_timer_padrao())
-            if self.comando == 'print':
+            elif self.comando == 'down':
+                for i in range(self.aux):
+                    pyautogui.press('down')
+                    time.sleep(self.config.get_timer_padrao())
+            elif self.comando == 'up':
+                for i in range(self.aux):
+                    pyautogui.press('up')
+                    time.sleep(self.config.get_timer_padrao())
+            elif self.comando == 'print':
                 file_name = str(datetime.now()).replace(':','').replace('.','').replace(' ','').replace('-','')+'_print.png'
 
                 pyautogui.screenshot(self.config.get_dir_output()+file_name)

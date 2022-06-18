@@ -60,9 +60,9 @@ Pois, o comando Clique em sua notação completa é composto por:
 ```
 _{ + posição pixel X + , + posição pixel Y + } + : + R para botão Direito ou L para botão Esquerdo + número de cliques
 ```
-Outros exemplos(testando na minha máquina, é claro :D):
-_{1320,750}:L1 - Clica com o botão direito no relógio do Windows 
-_{32,28}:R2 - Abre o primeiro ícone da área de trabalho
+Outros exemplos(testando na minha máquina, é claro :D): <br>
+`_{1320,750}:L1` - Clica com o botão direito no relógio do Windows <br>
+`_{32,28}:R2` - Abre o primeiro ícone da área de trabalho <br>
 
 #### Como descobrir os pixels das posições
 

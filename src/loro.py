@@ -1,3 +1,4 @@
+import sys
 import pip
 
 def install(package):
@@ -97,7 +98,17 @@ class Instrucao:
                 aux = int(com[pos+1:])
                 com = com[:pos]
                 return com[2:], 6, aux
-            if re.fullmatch(r'_\|print', com) != None:
+            elif re.fullmatch(r'_\|(down):\d+', com) != None:
+                pos = com.rfind(':')
+                aux = int(com[pos+1:])
+                com = com[:pos]
+                return com[2:], 6, aux
+            elif re.fullmatch(r'_\|(up):\d+', com) != None:
+                pos = com.rfind(':')
+                aux = int(com[pos+1:])
+                com = com[:pos]
+                return com[2:], 6, aux
+            elif re.fullmatch(r'_\|print', com) != None:
                 return com[2:], 6, None
             
             return com, 7, None
@@ -199,7 +210,15 @@ class Instrucao:
                 for i in range(self.aux):
                     pyautogui.press('tab')
                     time.sleep(self.config.get_timer_padrao())
-            if self.comando == 'print':
+            elif self.comando == 'down':
+                for i in range(self.aux):
+                    pyautogui.press('down')
+                    time.sleep(self.config.get_timer_padrao())
+            elif self.comando == 'up':
+                for i in range(self.aux):
+                    pyautogui.press('up')
+                    time.sleep(self.config.get_timer_padrao())
+            elif self.comando == 'print':
                 file_name = str(datetime.now()).replace(':','').replace('.','').replace(' ','').replace('-','')+'_print.png'
 
                 pyautogui.screenshot(self.config.get_dir_output()+file_name)
@@ -282,25 +301,29 @@ def main():
 
     arquivo_selecionado = ''
 
-    try:
-        if len(dir_comandos) == 2:
-            dir_output = os.path.dirname(os.path.realpath(__file__))
-        
-        if len(dir_output) == 2:
-            dir_output = os.path.dirname(os.path.realpath(__file__)) + '\output'
+    if len(sys.argv) > 1:
+        arquivo_selecionado = sys.argv[1]
+    else:
+        try:
+            
+                if len(dir_comandos) == 2:
+                    dir_output = os.path.dirname(os.path.realpath(__file__))
+                
+                if len(dir_output) == 2:
+                    dir_output = os.path.dirname(os.path.realpath(__file__)) + '\output'
 
-        dict_arquivos = __lista_arquivos__(dir_comandos)
-        opcoes = list(dict_arquivos.keys())
-        if len(opcoes) > 1:
-            resp = gui.inputOpcoes(titulo, 'Foram encontrados mais de um arquivo de comandos.\nQual você deseja utilizar?', opcoes)
-            if resp == 'Nenhuma' or resp == None:
-                raise Exception('Nenhuma opção selecionada')
-            arquivo_selecionado = dict_arquivos[resp]
-        else:
-            arquivo_selecionado = dict_arquivos[opcoes[0]]
-    except:
-        gui.alerta(titulo, 'ERRO: Não foram encontrados arquivos .csv no diretório "{}"!'.format(dir_comandos))
-        raise Exception('ERRO: Nao foram encontrados arquivos .csv no diretorio "{}"!'.format(dir_comandos))
+                dict_arquivos = __lista_arquivos__(dir_comandos)
+                opcoes = list(dict_arquivos.keys())
+                if len(opcoes) > 1:
+                    resp = gui.inputOpcoes(titulo, 'Foram encontrados mais de um arquivo de comandos.\nQual você deseja utilizar?', opcoes)
+                    if resp == 'Nenhuma' or resp == None:
+                        raise Exception('Nenhuma opção selecionada')
+                    arquivo_selecionado = dict_arquivos[resp]
+                else:
+                    arquivo_selecionado = dict_arquivos[opcoes[0]]
+        except:
+            gui.alerta(titulo, 'ERRO: Não foram encontrados arquivos .csv no diretório "{}"!'.format(dir_comandos))
+            raise Exception('ERRO: Nao foram encontrados arquivos .csv no diretorio "{}"!'.format(dir_comandos))
 
     try:
         arquivo = pd.read_csv(arquivo_selecionado, sep=';', header=None, names=['comandos'])
